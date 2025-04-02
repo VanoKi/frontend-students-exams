@@ -1,37 +1,31 @@
-import { createRoot } from "react-dom/client"
+import ReactDOM from "react-dom/client"
+import React from "react"
 
-type UserWallet = {
-  title: string
-  amount: number
+type PagePropsType = {
+  age: number
+  name: string
+  avatarUrl: string
 }
 
-type UserWalletProps = {
-  wallet: UserWallet
+const Page: React.FC<PagePropsType> = (props) => {
+  return <User a={name} n={age} />
 }
 
-export const UserWallet = ({ wallet }: UserWalletProps) => {
-  return (
-    <p>
-      title: {wallet.title}, amount: {wallet.amount}
-    </p>
-  )
+type UserPropsType = {
+  a: number
+  n: string
 }
 
-export const UserMoney = () => {
-  const wallets = [
-    { title: "bitcoin", amount: 1 },
-    { title: "$", amount: 100 },
-  ]
-
+export const User: React.FC<UserPropsType> = (props) => {
   return (
     <div>
-      <UserWallet wallet={xxx} />
-      <UserWallet wallet={yyy} />
+      name: {props.n}, age: {props.a}
     </div>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<UserMoney />)
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
+root.render(<Page age={40} name="Brendan" avatarUrl={"test"} />)
 
-// Что нужно написать вместо xxx и yyy, чтобы компонент UserMoney отобразил информацию о двух кошельках (bitcoin и $)?
-// Ответ дайте через пробел, например: props.x wallets
+// Что нужно написать вместо xxx и yyy?
+// Ответ дайте через пробел, например: blabla onClick(props)
