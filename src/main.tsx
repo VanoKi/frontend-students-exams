@@ -1,35 +1,37 @@
 import { createRoot } from "react-dom/client"
 
-const Son = (props: any) => {
-  return <div>I am son. My name is {props.name}</div>
+type UserWallet = {
+  title: string
+  amount: number
 }
 
-const Father = (props: any) => {
+type UserWalletProps = {
+  wallet: UserWallet
+}
+
+export const UserWallet = ({ wallet }: UserWalletProps) => {
+  return (
+    <p>
+      title: {wallet.title}, amount: {wallet.amount}
+    </p>
+  )
+}
+
+export const UserMoney = () => {
+  const wallets = [
+    { title: "bitcoin", amount: 1 },
+    { title: "$", amount: 100 },
+  ]
+
   return (
     <div>
-      I am father. My name is {props.name}
-      <Son name={props.sonName} />
+      <UserWallet wallet={xxx} />
+      <UserWallet wallet={yyy} />
     </div>
   )
 }
 
-const Granny = (props: any) => {
-  return (
-    <div>
-      I am granny. My name is {props.name}
-      <Father name={props.fatherName} sonName={props.sonName} />
-    </div>
-  )
-}
+createRoot(document.getElementById("root")!).render(<UserMoney />)
 
-export const App = () => {
-  return (
-    <div>
-      <Granny name={"Бабуля"} zzz={"Батя"} sonName={"Сын"} />
-    </div>
-  )
-}
-
-createRoot(document.getElementById("root")!).render(<App />)
-
-// Что нужно написать вместо XXX YYY ZZZ? Ответ дайте через пробел
+// Что нужно написать вместо xxx и yyy, чтобы компонент UserMoney отобразил информацию о двух кошельках (bitcoin и $)?
+// Ответ дайте через пробел, например: props.x wallets
