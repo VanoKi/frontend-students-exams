@@ -1,31 +1,23 @@
-import ReactDOM from "react-dom/client"
-import React from "react"
+import { createRoot } from "react-dom/client"
 
-type PagePropsType = {
-  age: number
-  name: string
-  avatarUrl: string
+const CrazyButton = (props: any) => {
+  const style = {
+    color: props.XXX,
+    backgroundColor: props.YYY,
+  }
+
+  return <button style={style}>{props.ZZZ}</button>
 }
 
-const Page: React.FC<PagePropsType> = (props) => {
-  return <User a={name} n={age} />
-}
-
-type UserPropsType = {
-  a: number
-  n: string
-}
-
-export const User: React.FC<UserPropsType> = (props) => {
+export const App = () => {
   return (
     <div>
-      name: {props.n}, age: {props.a}
+      <CrazyButton title={"delete"} fontColor={"white"} bgColor={"red"} />
+      <CrazyButton title={"add"} fontColor={"white"} bgColor={"green"} />
     </div>
   )
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
-root.render(<Page age={40} name="Brendan" avatarUrl={"test"} />)
+createRoot(document.getElementById("root")!).render(<App />)
 
-// Что нужно написать вместо xxx и yyy?
-// Ответ дайте через пробел, например: blabla onClick(props)
+// Что нужно написать вместо XXX YYY ZZZ? Ответ дайте через пробел
