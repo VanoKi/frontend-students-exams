@@ -2,11 +2,11 @@ import { createRoot } from "react-dom/client"
 
 const CrazyButton = (props: any) => {
   const style = {
-    color: props.XXX,
-    backgroundColor: props.YYY,
+    color: props.fontcolor,
+    backgroundColor: props.bgColor,
   }
 
-  return <button style={style}>{props.ZZZ}</button>
+  return <button style={style}>{props.title}</button>
 }
 
 export const App = () => {
