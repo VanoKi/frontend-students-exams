@@ -1,19 +1,35 @@
 import { createRoot } from "react-dom/client"
 
-type UserProps = {
-  name: string
-  description: string
+const Son = (props: any) => {
+  return <div>I am son. My name is {props.name}</div>
 }
 
-const User = (props: UserProps) => {
+const Father = (props: any) => {
   return (
     <div>
-      <p>Имя: {props.name}</p>
-      <p>Описание: {"❗X"}</p>
+      I am father. My name is {props.name}
+      <Son name={props.sonName} />
     </div>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<User name={"John"} description={"lorem ipsum"} />)
+const Granny = (props: any) => {
+  return (
+    <div>
+      I am granny. My name is {props.name}
+      <Father name={props.fatherName} sonName={props.sonName} />
+    </div>
+  )
+}
 
-// Что нужно написать вместо '❗X', что бы в браузере отобразилось описание, которое передали в пропсах ?
+export const App = () => {
+  return (
+    <div>
+      <Granny name={"Бабуля"} zzz={"Батя"} sonName={"Сын"} />
+    </div>
+  )
+}
+
+createRoot(document.getElementById("root")!).render(<App />)
+
+// Что нужно написать вместо XXX YYY ZZZ? Ответ дайте через пробел
