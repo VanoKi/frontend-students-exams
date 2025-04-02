@@ -1,25 +1,19 @@
 import { createRoot } from "react-dom/client"
 
-type Props = {
-  city: string // 'Minsk'
-  country: string // 'Belarus'
-  coords?: string // '53.917501,27.604851'
+type UserProps = {
+  name: string
+  description: string
 }
 
-const App = () => {
-  return <Component city="Minsk" />
-}
-
-const Component = ({ city, country, coords }: Props) => {
+const User = (props: UserProps) => {
   return (
     <div>
-      <p>{city}</p>
-      <p>{country}</p>
-      <p>{coords}</p>
+      <p>Имя: {props.name}</p>
+      <p>Описание: {"❗X"}</p>
     </div>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<App />)
+createRoot(document.getElementById("root")!).render(<User name={"John"} description={"lorem ipsum"} />)
 
-// Что МИНИМАЛЬНО ДОСТАТОЧНО нужно дописать в строке 10 (cтрока с ошибкой), чтобы не было ошибки
+// Что нужно написать вместо '❗X', что бы в браузере отобразилось описание, которое передали в пропсах ?
