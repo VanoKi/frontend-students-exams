@@ -1,52 +1,42 @@
 import { createRoot } from "react-dom/client"
 
-type News = {
-  title: string
-  author: string
+const VideoHeader = (props: { videoName: string }) => {
+  return <div>😀 {props.videoName}</div>
 }
 
-type Article = {
-  title: string
-  date: string
-  text: string
-}
-
-type PageProps = {
-  news: News[]
-  mainArticle: Article
-}
-
-const Page = (props: PageProps) => {
+const VideoContent = (props: { videoContent: string }) => {
   return (
     <div>
-      <article>
-        <h1>Название: {props.mainArticle.title}</h1>
-        <div>{props.mainArticle.date}</div>
-        <div>{props.mainArticle.text}</div>
-      </article>
-      <aside>
-        <h2>Articles:</h2>
-        <ul>
-          {props.news.map((n) => (
-            <li>
-              {n.title}, {n.author}
-            </li>
-          ))}
-        </ul>
-      </aside>
+      📼 <a href={props.videoContent}>{props.videoContent}</a>
     </div>
   )
 }
 
-createRoot(document.getElementById("root")!).render(
-  <Page
-    news={[
-      { author: "Ivanov", title: "news title 1" },
-      { author: "Petrov", title: "news title 2" },
-    ]}
-    mainArticle={{ title: "article title 1", text: "text 1", date: "21.01.2001" }}
-  />,
-)
+const VideoDescription = (props: { videoDescription: string }) => {
+  return <div>📑 {props.videoDescription}</div>
+}
 
-// Что нужно написать вместо XXX и YYY, чтобы отобразить данные?
-// Ответ дайте через пробел, например: component props
+export const YoutubeVideo = (props: any) => {
+  return (
+    <div>
+      <VideoHeader videoName={video.title} />
+      <VideoContent videoContent={video.link} />
+      <VideoDescription videoDescription={video.description} />
+    </div>
+  )
+}
+
+export const App = () => {
+  const video = {
+    title: "Samurai way",
+    link: "https://www.youtube.com/watch?v=gb7gMluAeao&list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8",
+    description: "Best free react-course",
+  }
+
+  return <YoutubeVideo video={video} />
+}
+
+createRoot(document.getElementById("root")!).render(<App />)
+
+// Что нужно написать вместо xxx yyy zzz, чтобы увидеть ожидаемый результат?
+// Ответ дайте через пробел, пример: a={12} b={video.id} c={'hello'}
