@@ -1,23 +1,21 @@
 import { createRoot } from "react-dom/client"
+import { useState } from "react"
 
-const CrazyButton = (props: any) => {
-  const style = {
-    color: props.fontcolor,
-    backgroundColor: props.bgColor,
-  }
+function UsersList() {
+  const [users, setUsers] = useState<string[]>(["Bob", "Alex", "Ann"])
 
-  return <button style={style}>{props.title}</button>
-}
-
-export const App = () => {
   return (
     <div>
-      <CrazyButton title={"delete"} fontColor={"white"} bgColor={"red"} />
-      <CrazyButton title={"add"} fontColor={"white"} bgColor={"green"} />
+      <h4>User list:</h4>
+      <ul>
+        {users.ХХХ((user) => (
+          <li>{user}</li>
+        ))}
+      </ul>
     </div>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<App />)
+createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Что нужно написать вместо XXX YYY ZZZ? Ответ дайте через пробел
+// Что надо вставить вместо ХХХ, чтобы код заработал?
