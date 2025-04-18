@@ -1,14 +1,11 @@
-import { useState } from "react"
+import { StrictMode, useState } from "react"
 import { createRoot } from "react-dom/client"
+import App from "../App.tsx"
 
-function UsersList() {
-  const results = useState<Array<string>>(["Bob", "Alex", "Ann"])
-  const users = results[0]
-  const setUsers = results[1]
-
-  return <p>Тут будет список пользователей</p>
-}
-
-createRoot(document.getElementById("root")!).render(<UsersList />)
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
 
 // Какой тип правильнее указать вместо "any" при типизации стэйта?
