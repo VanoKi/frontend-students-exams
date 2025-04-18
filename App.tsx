@@ -16,6 +16,7 @@ const App = () => {
   return (
     <>
       <div className={"counter"}>
+        <h1>Chelyabinsk Design Detected</h1>
         <CountDisplay count={count} />
         <Buttons onClickHandker={onClickHandler} oncClickResetHandler={onClickResetHandler} count={count} />
       </div>
