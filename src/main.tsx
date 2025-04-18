@@ -1,19 +1,11 @@
-import { useState } from "react"
 import { createRoot } from "react-dom/client"
+import { useState } from "react"
 
 function UsersList() {
-  const [users, setUsers] = useState<string[]>(["Bob", "Alex", "Ann"])
-  const getUser = (user: string) => <li>{user}</li>
-  const usersList = users.map(getUser)
-
-  return (
-    <div>
-      <h4>User list:</h4>
-      <ul>{usersList}</ul>
-    </div>
-  )
+  const [users, setUsers] = useState<Array<string>>(["Bob", "Alex", "Ann"])
+  return <p>Тут будет список пользователей</p>
 }
 
 createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Что вернёт выражение: Array.isArray(usersList)?
+// Что вернёт выражение: typeof setUsers?
