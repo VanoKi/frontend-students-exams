@@ -2,7 +2,7 @@ import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
 function UsersList() {
-  const results = useState<Array>(["Bob", "Alex", "Ann"])
+  const results = useState<Array<string>>(["Bob", "Alex", "Ann"])
   const users = results[0]
   const setUsers = results[1]
 
