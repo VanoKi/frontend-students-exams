@@ -4,7 +4,7 @@ type ButtonsProps = {
   count: number
 }
 
-const Buttons = (props: ButtonsProps) => {
+export const Buttons = (props: ButtonsProps) => {
   return (
     <div>
       <button className={"btn"} onClick={props.onClickHandker} disabled={props.count === 5}>
@@ -16,5 +16,3 @@ const Buttons = (props: ButtonsProps) => {
     </div>
   )
 }
-
-export default Buttons

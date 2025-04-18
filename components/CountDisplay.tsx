@@ -1,12 +1,10 @@
 type CountDisplayProps = {
   count: number
 }
-const CountDisplay = (props: CountDisplayProps) => {
+export const CountDisplay = (props: CountDisplayProps) => {
   return (
     <div className={"counter-display"}>
-      <span className={""}> {props.count} </span>
+      <span className={props.count >= 5 ? "red" : ""}> {props.count} </span>
     </div>
   )
 }
-
-export default CountDisplay
