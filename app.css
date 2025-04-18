@@ -35,10 +35,6 @@
     color: red;
 }
 
-.black {
-    color: black;
-}
-
 .buttons {
     display: flex;
     justify-content: space-between;
@@ -55,7 +51,11 @@
     height: 40px;
 }
 
-.button:disabled {
-    cursor: auto;
+.btn:hover{
+    cursor: pointer;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
 }
 
