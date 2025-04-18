@@ -2,17 +2,14 @@ import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
 function UsersList() {
-  const [users, setUsers] = useState<string[]>(["Bob", "Alex", "Ann"])
-  const getUser = (user: string) => <li>{user}</li>
+  const results = useState<string[]>(["Bob", "Alex", "Ann"])
 
-  return (
-    <div>
-      <h4>User list:</h4>
-      <ul>{users.map(getUser)}</ul>
-    </div>
-  )
+  const users = results[0]
+  const setUsers = results[1]
+
+  return <p>Тут будет список пользователей</p>
 }
 
 createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Что вернёт выражение: typeof getUser?
+// Чему равно results.length?
