@@ -1,5 +1,6 @@
 import { useState } from "react"
 import CountDisplay from "./components/CountDisplay.tsx"
+import Buttons from "./components/Buttons.tsx"
 
 const App = () => {
   let [count, setCount] = useState(0)
@@ -13,7 +14,7 @@ const App = () => {
     <>
       <div className={"counter"}>
         <CountDisplay count={count} />
-        <Buttons />
+        <Buttons onClickHandker={onClickHandler} oncClickResetHandler={onClickResetHandler} />
       </div>
     </>
   )
