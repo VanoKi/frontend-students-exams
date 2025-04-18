@@ -1,6 +1,6 @@
 .counter-item {
     border-radius: 8px;
-    border: 1px solid deepskyblue;
+    border: 1px solid darkcyan;
     padding: 16px;
     width: 200px;
 }
@@ -11,6 +11,10 @@
     border-radius: 8px;
     width: 20vw;
     height: 20vh;
+
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
 }
 
 .counter-display {
@@ -35,7 +39,7 @@
     color: black;
 }
 
-.button-wrapper {
+.buttons {
     display: flex;
     justify-content: space-between;
     border: 1px solid darkcyan;

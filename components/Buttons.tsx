@@ -6,7 +6,7 @@ type ButtonsProps = {
 
 export const Buttons = (props: ButtonsProps) => {
   return (
-    <div className={"button-wrapper"}>
+    <div className={"buttons"}>
       <button className={"btn"} onClick={props.onClickHandker} disabled={props.count === 5}>
         Increment
       </button>
