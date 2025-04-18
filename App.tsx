@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { CountDisplay } from "./components/CountDisplay.tsx"
 import { Buttons } from "./components/Buttons.tsx"
+import "./App.css"
 
 const App = () => {
   let [count, setCount] = useState(0)
