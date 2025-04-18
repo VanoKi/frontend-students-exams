@@ -1,5 +1,5 @@
 type CountDisplayProps = {
-  count: string
+  count: number
 }
 const CountDisplay = (props: CountDisplayProps) => {
   return (
