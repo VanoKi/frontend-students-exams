@@ -7,7 +7,7 @@ type Props = {
 }
 
 const App = () => {
-  return <Component city="Minsk" />
+  return <Component city="Minsk" country={"Belarus"} />
 }
 
 const Component = ({ city, country, coords }: Props) => {
