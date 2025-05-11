@@ -1,42 +1,10 @@
-import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-type User = {
-  id: number
-  name: string
-  age: number
+function Button() {
+  return <button onClick={xxx}>Click</button>
 }
 
-const UsersList = () => {
-  const data: User[] = [
-    { id: 1, name: "Bob", age: 25 },
-    { id: 2, name: "Alex", age: 28 },
-    { id: 3, name: "Ann", age: 23 },
-    { id: 4, name: "John", age: 30 },
-  ]
+createRoot(document.getElementById("root")!).render(<Button />)
 
-  const [users] = useState<User[]>(data)
-
-  // Необходимо отрендерить список пользователей старше 25 лет:
-  const getOlderThen25Users = (u: xxx) => u.age > 25
-  const olderThen25Users = users.filter(getOlderThen25Users)
-
-  return (
-    <main>
-      <h4>User list:</h4>
-      <ul>
-        {olderThen25Users.map((u) => {
-          return (
-            <li key={u.id}>
-              User {u.name}: {u.age} y.o.
-            </li>
-          )
-        })}
-      </ul>
-    </main>
-  )
-}
-
-createRoot(document.getElementById("root")!).render(<UsersList />)
-
-// Что надо написать вместо xxx, чтобы код работал?
+// Что надо написать вместо ххх,
+// чтобы на странице появился пустой alert при клике по кнопке?
