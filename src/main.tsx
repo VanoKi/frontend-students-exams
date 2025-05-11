@@ -1,20 +1,20 @@
-import { MouseEvent } from "react"
+import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-const Post = () => {
-  const onClickHandler = (e: MouseEvent<HTMLAnchorElement>) => {
-    // ❗X
-    alert("Летим 🚀")
+const User = () => {
+  const [userName, setUserName] = useState<string>("")
+
+  const onChangeHandler = (e: xxx) => {
+    setUserName(e.currentTarget.value)
   }
 
   return (
-    <a href={"https://www.youtube.com/"} onClick={onClickHandler}>
-      Ссылка, которая ведет на youtube
-    </a>
+    <div>
+      <p>{userName}</p>
+      <input onChange={onChangeHandler} />
+    </div>
   )
 }
+createRoot(document.getElementById("root")!).render(<User />)
 
-createRoot(document.getElementById("root")!).render(<Post />)
-
-// Что надо написать вместо ❗X, чтобы Вас не направило на страницу Youtube
-// при клике по ссылке?
+// Что надо написать вместо ххх, чтобы правильно типизировать параметр функции?
