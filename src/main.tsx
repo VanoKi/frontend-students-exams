@@ -1,54 +1,33 @@
-import { useState } from "react"
+import { useState, ChangeEvent } from "react"
 import { createRoot } from "react-dom/client"
 
-type User = {
-  id: number
-  name: string
-  age: number
-}
+const Notes = () => {
+  const [newNote, setNewNote] = useState<string>("")
+  const [notes, setNotes] = useState<string[]>([])
 
-type UserProps = User & {
-  deleteUser: (id: number) => void
-}
+  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setNewNote(e.currentTarget.value)
+  }
 
-const User = (props: UserProps) => {
-  const deleteUser = () => props.deleteUser(props.id)
-
-  return (
-    <li>
-      <button onClick={xxx}>Delete</button>
-      User {props.name}: {props.age} y.o.
-    </li>
-  )
-}
-
-const UsersList = () => {
-  const data: User[] = [
-    { id: 1, name: "Bob", age: 25 },
-    { id: 2, name: "Alex", age: 28 },
-    { id: 3, name: "Ann", age: 23 },
-    { id: 4, name: "John", age: 30 },
-  ]
-
-  const [users, setUsers] = useState<User[]>(data)
-
-  const deleteUser = (userID: number) => {
-    const updatedUsers = users.filter((u) => u.id !== userID)
-    setUsers(updatedUsers)
+  const addNoteHandler = () => {
+    setNotes([newNote, ...notes])
+    setNewNote("")
   }
 
   return (
-    <main>
-      <h4>User list:</h4>
-      <ul>
-        {users.map((u) => (
-          <User key={u.id} {...u} deleteUser={deleteUser} />
+    <div>
+      <textarea value={newNote} onChange={onChangeHandler} onBlur={addNoteHandler} />
+      <h4>Notes:</h4>
+      <div>
+        {notes.map((note, i) => (
+          <p key={i}>{note}</p>
         ))}
-      </ul>
-    </main>
+      </div>
+    </div>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<UsersList />)
+createRoot(document.getElementById("root")!).render(<Notes />)
 
-// Что надо написать вместо xxx, чтобы код работал?
+// Что надо написать вместо ❗X,
+// чтобы при потере инпутом фокуса добавлялась заметка
