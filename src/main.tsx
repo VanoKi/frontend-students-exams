@@ -7,29 +7,30 @@ type User = {
   age: number
 }
 
-const User = (props: User) => (
-  <li>
-    Student {props.name}: {props.age} y.o.
-  </li>
-)
-
 const UsersList = () => {
   const data: User[] = [
-    { id: 1, name: "Bob", age: 34 },
-    { id: 2, name: "Alex", age: 29 },
-    { id: 3, name: "Ann", age: 25 },
-    { id: 4, name: "John", age: 36 },
+    { id: 1, name: "Bob", age: 25 },
+    { id: 2, name: "Alex", age: 28 },
+    { id: 3, name: "Ann", age: 23 },
+    { id: 4, name: "John", age: 30 },
   ]
-
   const [users] = useState<User[]>(data)
+
+  const olderThen25Users = users.filter((u: User) => u.age > 25)
+
+  const isArray = Array.isArray(olderThen25Users)
 
   return (
     <main>
       <h4>User list:</h4>
       <ul>
-        {users.map((u) => (
-          <User key={u.id} {...xxx} />
-        ))}
+        {olderThen25Users.map((u) => {
+          return (
+            <li key={u.id}>
+              User {u.name}: {u.age} y.o.
+            </li>
+          )
+        })}
       </ul>
     </main>
   )
@@ -37,4 +38,4 @@ const UsersList = () => {
 
 createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Что надо написать вместо xxx, чтобы код работал?
+// Что будет записано в переменную isArray в данном коде?
