@@ -14,11 +14,12 @@ const UsersList = () => {
     { id: 3, name: "Ann", age: 23 },
     { id: 4, name: "John", age: 30 },
   ]
+
   const [users] = useState<User[]>(data)
 
-  const olderThen25Users = users.filter((u: User) => u.age > 25)
-
-  const isArray = Array.isArray(olderThen25Users)
+  // Необходимо отрендерить список пользователей старше 25 лет:
+  const getOlderThen25Users = (u: xxx) => u.age > 25
+  const olderThen25Users = users.filter(getOlderThen25Users)
 
   return (
     <main>
@@ -38,4 +39,4 @@ const UsersList = () => {
 
 createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Что будет записано в переменную isArray в данном коде?
+// Что надо написать вместо xxx, чтобы код работал?
