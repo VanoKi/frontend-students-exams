@@ -1,34 +1,20 @@
 import { MouseEvent } from "react"
 import { createRoot } from "react-dom/client"
 
-const AuthForm = () => {
-  const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+const Post = () => {
+  const onClickHandler = (e: MouseEvent<HTMLAnchorElement>) => {
     // ❗X
-    alert("🚀🚀🚀")
+    alert("Летим 🚀")
   }
+
   return (
-    <form>
-      <div>
-        <label style={{ padding: "10px 0" }}>
-          Name:
-          <input type={"email"} name={"email"} />
-        </label>
-      </div>
-      <div>
-        <label style={{ padding: "10px 0" }}>
-          Password:
-          <input type={"password"} name={"password"} />
-        </label>
-      </div>
-      <button onClick={onClickHandler} type={"submit"}>
-        Log in
-      </button>
-    </form>
+    <a href={"https://www.youtube.com/"} onClick={onClickHandler}>
+      Ссылка, которая ведет на youtube
+    </a>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<AuthForm />)
+createRoot(document.getElementById("root")!).render(<Post />)
 
-// Что надо написать вместо ❗X, чтобы данные из формы
-// не отправлялись на сервер и страница не перезагружалась
-// при клике по кнопке?
+// Что надо написать вместо ❗X, чтобы Вас не направило на страницу Youtube
+// при клике по ссылке?
