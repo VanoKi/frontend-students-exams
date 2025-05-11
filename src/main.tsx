@@ -1,23 +1,23 @@
-import { useState } from "react"
+import { MouseEvent, useState } from "react"
+import { createRoot } from "react-dom/client"
 
-type Props = {
-  text: string
-  className?: string
-}
+const Button = () => {
+  const [tagName, setTagName] = useState<string>()
 
-export const CustomButton = (props: Props) => {
-  const [count, setCount] = useState(0)
-
-  const onClick = () => {
-    setCount((count += 1))
+  const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    setTagName(e.currentTarget.tagName)
   }
 
   return (
-    <div>
-      <p>{count}</p>
-      <button className={props.className} onClick={onClick}>
-        {props.text}
+    <>
+      <p>{tagName}</p>
+      <button onClick={onClickHandler}>
+        <span>Click</span>
       </button>
-    </div>
+    </>
   )
 }
+
+createRoot(document.getElementById("root")!).render(<Button />)
+
+// Что надо написать вместо ххх, что бы на странице появился текст BUTTON?
