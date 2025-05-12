@@ -1,41 +1,35 @@
-import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-type User = {
-  id: number
-  name: string
-  age: number
+const Son = (props: any) => {
+  return <div>I am son. My name is {props.name}</div>
 }
 
-const UsersList = () => {
-  const data: User[] = [
-    { id: 1, name: "Bob", age: 24 },
-    { id: 2, name: "Alex", age: 28 },
-    { id: 3, name: "Ann", age: 23 },
-    { id: 4, name: "John", age: 30 },
-  ]
-
-  const [users] = useState<User[]>(data)
-
-  // Пользователи старше 25 лет:
-  const olderThen25Users = users.xxx((u) => u.age > 25)
-
+const Father = (props: any) => {
   return (
-    <main>
-      <h4>User list:</h4>
-      <ul>
-        {olderThen25Users.map((u) => {
-          return (
-            <li key={u.id}>
-              User {u.name}: {u.age} y.o.
-            </li>
-          )
-        })}
-      </ul>
-    </main>
+    <div>
+      I am father. My name is {props.name}
+      <Son name={props.sonName} />
+    </div>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<UsersList />)
+const Granny = (props: any) => {
+  return (
+    <div>
+      I am granny. My name is {props.name}
+      <Father name={props.fatherName} sonName={props.sonName} />
+    </div>
+  )
+}
 
-// Что надо написать вместо xxx, чтобы отрисовались пользователи старше 25 лет?
+export const App = () => {
+  return (
+    <div>
+      <Granny XXX={"Бабуля"} YYY={"Батя"} ZZZ={"Сын"} />
+    </div>
+  )
+}
+
+createRoot(document.getElementById("root")!).render(<App />)
+
+// Что нужно написать вместо XXX YYY ZZZ? Ответ дайте через пробел
