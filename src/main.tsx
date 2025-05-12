@@ -1,31 +1,13 @@
-import ReactDOM from "react-dom/client"
-import React from "react"
+import { MouseEvent } from "react"
+import { createRoot } from "react-dom/client"
 
-type PagePropsType = {
-  age: number
-  name: string
-  avatarUrl: string
+const Button = () => {
+  const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    console.log(typeof e === ххх)
+  }
+  return <button onClick={onClickHandler}>Click</button>
 }
 
-const Page: React.FC<PagePropsType> = (props) => {
-  return <User a={xxx} n={yyy} />
-}
+createRoot(document.getElementById("root")!).render(<Button />)
 
-type UserPropsType = {
-  a: number
-  n: string
-}
-
-export const User: React.FC<UserPropsType> = (props) => {
-  return (
-    <div>
-      name: {props.n}, age: {props.a}
-    </div>
-  )
-}
-
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
-root.render(<Page age={40} name="Brendan" avatarUrl={"test"} />)
-
-// Что нужно написать вместо xxx и yyy?
-// Ответ дайте через пробел, например: blabla onClick(props)
+// Что надо написать вместо ххх, чтобы в консоль вывело true?
