@@ -1,17 +1,10 @@
 const student = {
-  name: "Yana",
+  name: "Maxim",
+  age: 100,
 }
 
-const newStudent = student
+export const copyStudent = { ...student }
 
-const myFriend = {
-  ...newStudent,
-}
+student.name = "Max"
 
-const newUser = {
-  name: "Eva",
-}
-
-export const myFriendName = student.name !== myFriend.name ? newUser.name : student.name
-
-// Какое значение получит переменная "myFriendName"?
+// Чему равно copyStudent.name после выполнения этого кода?
