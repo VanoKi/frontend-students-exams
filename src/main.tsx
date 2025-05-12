@@ -1,33 +1,17 @@
-import { useState } from "react"
-import { createRoot } from "react-dom/client"
-
-export const colors = ["red", "yellow", "green", "blue", "violet", "chartreuse"]
-
-const styles = {
-  width: "100px",
-  height: "100px",
-  borderRadius: "50%",
-  backgroundColor: "black",
+const student = {
+  name: "Yana",
 }
 
-const Colorize = () => {
-  const [color, setColor] = useState<string>("black")
+const newStudent = student
 
-  const getColor = (colors: string[]) => {
-    const nextColor = colors[Math.floor(Math.random() * colors.length)]
-    return nextColor
-  }
-
-  return (
-    <main>
-      <div style={{ ...styles, backgroundColor: color }} />
-      <div>
-        <button onClick={() => setColor(XXX)}>Get random color</button>
-      </div>
-    </main>
-  )
+const myFriend = {
+  ...newStudent,
 }
 
-createRoot(document.getElementById("root")!).render(<Colorize />)
+const newUser = {
+  name: "Eva",
+}
 
-// Что надо вставить вместо XXX, чтобы круг менял цвет по клику?
+export const myFriendName = student.name !== myFriend.name ? newUser.name : student.name
+
+// Какое значение получит переменная "myFriendName"?
