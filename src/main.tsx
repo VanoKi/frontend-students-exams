@@ -1,36 +1,37 @@
-import { useState, ChangeEvent } from "react"
 import { createRoot } from "react-dom/client"
 
-const Notes = () => {
-  const [newNote, setNewNote] = useState<string>("")
-  const [notes, setNotes] = useState<string[]>([])
+type UserWallet = {
+  title: string
+  amount: number
+}
 
-  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setNewNote(e.currentTarget.value)
-  }
+type UserWalletProps = {
+  wallet: UserWallet
+}
 
-  const addNoteHandler = () => {
-    setNotes([newNote, ...notes])
-    setNewNote("")
-  }
+export const UserWallet = ({ wallet }: UserWalletProps) => {
+  return (
+    <p>
+      title: {wallet.title}, amount: {wallet.amount}
+    </p>
+  )
+}
+
+export const UserMoney = () => {
+  const wallets = [
+    { title: "bitcoin", amount: 1 },
+    { title: "$", amount: 100 },
+  ]
 
   return (
     <div>
-      <textarea value={newNote} onChange={onChangeHandler} />
-      <div>
-        <button onClick={addNoteHandler}>Add note</button>
-        <button onClick={xxx}>Clear notes list</button>
-      </div>
-      <h4>Notes:</h4>
-      <div>
-        {notes.map((note) => (
-          <p>{note}</p>
-        ))}
-      </div>
+      <UserWallet wallet={xxx} />
+      <UserWallet wallet={yyy} />
     </div>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<Notes />)
-// Что надо написать вместо ххх,
-// чтобы при клике на кнопку `Clear notes list` список заметок очищался?
+createRoot(document.getElementById("root")!).render(<UserMoney />)
+
+// Что нужно написать вместо xxx и yyy, чтобы компонент UserMoney отобразил информацию о двух кошельках (bitcoin и $)?
+// Ответ дайте через пробел, например: props.x wallets
