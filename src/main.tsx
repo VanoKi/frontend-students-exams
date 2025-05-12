@@ -1,16 +1,23 @@
 import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-const ColorButton = () => {
-  const [isColored, setIsColored] = useState<boolean>(false)
+const PasswordChecker = () => {
+  const [password, setPassword] = useState<string>("")
 
   return (
-    <button style={{ backgroundColor: `${XXX === true ? "red" : ""}` }} onClick={() => setIsColored(true)}>
-      Меняю цвет по клику
-    </button>
+    <main>
+      <p>Your password must have more than 8 charters!</p>
+      <input
+        placeholder={"Enter your password"}
+        value={password}
+        onChange={(e) => setPassword(e.currentTarget.value)}
+        type={"password"}
+      />
+      {XXX < 9 && <p style={{ color: "red" }}>The password is too short!</p>}
+    </main>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<ColorButton />)
+createRoot(document.getElementById("root")!).render(<PasswordChecker />)
 
-// Что надо написать вместо XXX, чтобы при клике кнопка становилась красной?
+// Что надо вставить вместо XXX, чтобы код работал нормально?
