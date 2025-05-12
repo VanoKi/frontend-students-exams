@@ -1,9 +1,11 @@
-const userName = (user = "") => {
-  let userName: any = "Nikita"
-  userName += user
-  return user
+const client = {
+  name: "Valera",
+  age: 87,
+  friends: ["Elizaveta", "Nikita", "Max", "Konstantin"],
 }
 
-export const student = userName() || "Ekaterina"
+const [camera, body, chocolate] = client.friends
 
-// Какое значение получит переменная student?
+export const result = body
+
+// Какое значение получит переменная result?
