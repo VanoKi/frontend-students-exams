@@ -1,14 +1,29 @@
-const customer = {
-  name: "Dima",
-  age: 55,
-  friends: ["Andrey", "Victor", "Liza"],
+type Student = {
+  id: number
+  name: string
 }
 
-const updatedCustomer = {
-  ...customer,
-  friends: customer.friends,
+type Students = Student[]
+
+type Friends = {
+  [key: string]: string[]
 }
 
-console.log(customer.friends === updatedCustomer.friends)
+export const students: Students = [
+  { id: 1, name: "Bob" },
+  { id: 2, name: "Alex" },
+  { id: 3, name: "Ann" },
+  { id: 4, name: "Charley" },
+]
 
-// Какое значение будет выведено в консоль?
+export const friends: Friends = {
+  1: ["Oliver", "Jack", "Oscar"],
+  2: ["Jack", "Lewis", "Thomas"],
+  3: ["William", "Michael", "Lewis"],
+  4: ["Oscar", "James", "William"],
+}
+
+//Дан список студентов и структура,
+//которая содержит список друзей каждого из студентов
+//Id студента является ключом к массиву его друзей.
+//Что вернёт выражение Array.isArray(students)?
