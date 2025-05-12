@@ -1,13 +1,15 @@
-import { MouseEvent } from "react"
+import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-const Button = () => {
-  const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log(typeof e === ххх)
-  }
-  return <button onClick={onClickHandler}>Click</button>
+function UsersList() {
+  const results = useState<string[]>(["Bob", "Alex", "Ann"])
+
+  const users = results[0]
+  const setUsers = results[1]
+
+  return <p>Тут будет список пользователей</p>
 }
 
-createRoot(document.getElementById("root")!).render(<Button />)
+createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Что надо написать вместо ххх, чтобы в консоль вывело true?
+// Чему равно results.length?
