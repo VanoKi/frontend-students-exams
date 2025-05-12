@@ -1,10 +1,13 @@
 const client = {
-  name: "Ivan",
-  age: 82,
+  name: "Liza",
+  age: 88,
+  friends: ["Andrey", "Masha", "Yana"],
 }
 
-export const copyClient = client
+export const updatedClient = { ...client }
 
-client.age = 71
+updatedClient.friends.push("Artur")
 
-// Чему равно значение copyClient.age после выполнения этого кода?
+console.log(client.friends[3])
+
+// Какое значение будет выведено в консоль?
