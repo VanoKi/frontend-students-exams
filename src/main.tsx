@@ -1,19 +1,49 @@
+import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-type UserProps = {
+type User = {
+  id: number
   name: string
-  description: string
+  age: number
 }
 
-const User = (props: UserProps) => {
+type UserProps = User & {
+  deleteUser: (id: number) => void
+}
+
+const User = (props: UserProps) => (
+  <li>
+    <button onClick={() => props.deleteUser(xxx)}>x</button>
+    User {props.name}: {props.age} y.o.
+  </li>
+)
+
+const UsersList = () => {
+  const data: User[] = [
+    { id: 1, name: "Bob", age: 25 },
+    { id: 2, name: "Alex", age: 28 },
+    { id: 3, name: "Ann", age: 23 },
+    { id: 4, name: "John", age: 30 },
+  ]
+
+  const [users, setUsers] = useState<User[]>(data)
+
+  const deleteUser = (userID: number) => {
+    const filteredUsers = users.filter((u) => u.id !== userID)
+    setUsers(filteredUsers)
+  }
+
   return (
-    <div>
-      <p>Имя: {props.name}</p>
-      <p>Описание: {"❗X"}</p>
-    </div>
+    <main>
+      <h4>User list:</h4>
+      <ul>
+        {users.map((u) => (
+          <User key={u.id} {...u} deleteUser={deleteUser} />
+        ))}
+      </ul>
+    </main>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<User name={"John"} description={"lorem ipsum"} />)
-
-// Что нужно написать вместо '❗X', что бы в браузере отобразилось описание, которое передали в пропсах ?
+createRoot(document.getElementById("root")!).render(<UsersList />)
+// Что надо написать вместо xxx, чтобы код работал?
