@@ -1,37 +1,12 @@
 import { createRoot } from "react-dom/client"
+import { useState } from "react"
 
-type UserWallet = {
-  title: string
-  amount: number
+function UsersList() {
+  const [users, setUsers] = useState<Array<string>>(["Bob", "Alex", "Ann"])
+  console.log(typeof setUsers)
+  return <p>Тут будет список пользователей</p>
 }
 
-type UserWalletProps = {
-  wallet: UserWallet
-}
+createRoot(document.getElementById("root")!).render(<UsersList />)
 
-export const UserWallet = ({ wallet }: UserWalletProps) => {
-  return (
-    <p>
-      title: {wallet.title}, amount: {wallet.amount}
-    </p>
-  )
-}
-
-export const UserMoney = () => {
-  const wallets = [
-    { title: "bitcoin", amount: 1 },
-    { title: "$", amount: 100 },
-  ]
-
-  return (
-    <div>
-      <UserWallet wallet={xxx} />
-      <UserWallet wallet={yyy} />
-    </div>
-  )
-}
-
-createRoot(document.getElementById("root")!).render(<UserMoney />)
-
-// Что нужно написать вместо xxx и yyy, чтобы компонент UserMoney отобразил информацию о двух кошельках (bitcoin и $)?
-// Ответ дайте через пробел, например: props.x wallets
+// Что вернёт выражение: typeof setUsers?
