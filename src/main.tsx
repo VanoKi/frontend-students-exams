@@ -3,11 +3,13 @@ type Student = {
   name: string
 }
 
+type Students = Student[]
+
 type Friends = {
   [key: string]: string[]
 }
 
-export const students: Student[] = [
+export const students: Students = [
   { id: 1, name: "Bob" },
   { id: 2, name: "Alex" },
   { id: 3, name: "Ann" },
@@ -24,4 +26,4 @@ export const friends: Friends = {
 //Дан список студентов и структура,
 //которая содержит список друзей каждого из студентов.
 //Id студента является ключом к массиву его друзей.
-//Какое значение лежит тут: friends[students[1].id][2]?
+//Что вернёт выражение: Array.isArray(friends)?
