@@ -1,11 +1,9 @@
-const client = {
-  name: "Valera",
-  age: 87,
-  friends: ["Elizaveta", "Nikita", "Max", "Konstantin"],
-}
+const names = ["Igor", "Konstantin", "Masha"]
 
-const [camera, body, chocolate] = client.friends
+const nameNext = names
 
-export const result = body
+nameNext.length = 0
+
+export const result = names[0] ? 66 : 39
 
 // Какое значение получит переменная result?
