@@ -1,23 +1,43 @@
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { createRoot } from "react-dom/client"
 
-const PasswordChecker = () => {
-  const [password, setPassword] = useState<string>("")
+const MIN_COMMENT_SIZE = 5
+
+const LongCommentChecker = () => {
+  const [comment, setComment] = useState<string>("")
+
+  const isCommentReady = comment.length > MIN_COMMENT_SIZE
+
+  const setCommentHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const newComment = e.currentTarget.value
+
+    setComment(newComment)
+  }
+
+  const clearCommentsHandler = () => {
+    if (isCommentReady) {
+      setComment("")
+    }
+  }
 
   return (
     <main>
-      <p>Your password must have more than 8 charters!</p>
-      <input
-        placeholder={"Enter your password"}
-        value={password}
-        onChange={(e) => setPassword(e.currentTarget.value)}
-        type={"password"}
+      <textarea
+        placeholder={"Your comment must have more than 5 charters"}
+        value={comment}
+        onChange={setCommentHandler}
       />
-      {XXX < 9 && <p style={{ color: "red" }}>The password is too short!</p>}
+      <div>
+        <button disabled={XXX} onClick={clearCommentsHandler}>
+          Send comment
+        </button>
+      </div>
     </main>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<PasswordChecker />)
+createRoot(document.getElementById("root")!).render(<LongCommentChecker />)
 
-// Что надо вставить вместо XXX, чтобы код работал нормально?
+// Что нужно написать вместо XXX, чтобы кнопка отправки комментария отрабатывала верно:
+// первоначально кнопка должна быть в состоянии disable, а после успешного выполнения условия (комментарий должен быть больше 5 символов) должна раздизаблиться.
+// ❗ Ответ необходимо дать на основании данных (переменных), которые уже есть в коде
