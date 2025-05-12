@@ -1,35 +1,16 @@
+import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-const Son = (props: any) => {
-  return <div>I am son. My name is {props.name}</div>
-}
+const ColorButton = () => {
+  const [isColored, setIsColored] = useState<boolean>(false)
 
-const Father = (props: any) => {
   return (
-    <div>
-      I am father. My name is {props.name}
-      <Son name={props.sonName} />
-    </div>
+    <button style={{ backgroundColor: `${XXX === true ? "red" : ""}` }} onClick={() => setIsColored(true)}>
+      Меняю цвет по клику
+    </button>
   )
 }
 
-const Granny = (props: any) => {
-  return (
-    <div>
-      I am granny. My name is {props.name}
-      <Father name={props.fatherName} sonName={props.sonName} />
-    </div>
-  )
-}
+createRoot(document.getElementById("root")!).render(<ColorButton />)
 
-export const App = () => {
-  return (
-    <div>
-      <Granny XXX={"Бабуля"} YYY={"Батя"} ZZZ={"Сын"} />
-    </div>
-  )
-}
-
-createRoot(document.getElementById("root")!).render(<App />)
-
-// Что нужно написать вместо XXX YYY ZZZ? Ответ дайте через пробел
+// Что надо написать вместо XXX, чтобы при клике кнопка становилась красной?
