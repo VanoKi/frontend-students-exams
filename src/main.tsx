@@ -1,8 +1,14 @@
-const members = ["Leonid", "Nikita", "Lev"]
-const customer = [...members]
-const answer = customer
+const customer = {
+  name: "Valera",
+  age: 78,
+  friends: ["Artem", "Ivan", "Margo"],
+}
 
-export const result = answer !== XXX ? "Yo!!!" : "Hey!!!"
+const newFriend = "Michail"
 
-// Имя какой переменной надо указать вместо XXX, что бы переменная result получила значение "Yo!!!"?
-// Если такой переменной нет, в качестве ответа укажите null.
+const friends = [XXX, newFriend]
+
+export const updatedCustomer = { ...customer, friends: friends }
+
+// Выполнено преобразование объекта: добавлен новый друг в список.
+// Что надо указать вместо XXX, что бы выполнить это действие иммутабельно?
