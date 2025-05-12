@@ -8,32 +8,34 @@ type User = {
 }
 
 const UsersList = () => {
-  const state = [
-    { id: 1, name: "Bob", age: 34 },
-    { id: 2, name: "Alex", age: 25 },
-    { id: 3, name: "Ann", age: 30 },
-    { id: 4, name: "John", age: 23 },
+  const data: User[] = [
+    { id: 1, name: "Bob", age: 24 },
+    { id: 2, name: "Alex", age: 28 },
+    { id: 3, name: "Ann", age: 23 },
+    { id: 4, name: "John", age: 30 },
   ]
 
-  const users = [
-    { id: 1, userName: "Bob", age: 34 },
-    { id: 2, userName: "Alex", age: 25 },
-    { id: 3, userName: "Ann", age: 30 },
-    { id: 4, userName: "John", age: 23 },
-  ]
+  const [users] = useState<User[]>(data)
 
-  const [usersList, setUsersList] = useState<User[]>(XXX)
+  // Пользователи старше 25 лет:
+  const olderThen25Users = users.xxx((u) => u.age > 25)
 
   return (
-    <>
-      <h2>User list:</h2>
-      <p>Тут будет список пользователей</p>
-    </>
+    <main>
+      <h4>User list:</h4>
+      <ul>
+        {olderThen25Users.map((u) => {
+          return (
+            <li key={u.id}>
+              User {u.name}: {u.age} y.o.
+            </li>
+          )
+        })}
+      </ul>
+    </main>
   )
 }
 
 createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Что надо написать вместо XXX, чтобы код работал?
-// ❗ Если мы отмапим массив, то должны увидеть данные пользователей
-// ❗ Ответ дать минимально возможным объёмом кода
+// Что надо написать вместо xxx, чтобы отрисовались пользователи старше 25 лет?
