@@ -1,10 +1,14 @@
-const student = {
-  name: "Maxim",
-  age: 100,
+const customer = {
+  name: "Dima",
+  age: 55,
+  friends: ["Andrey", "Victor", "Liza"],
 }
 
-export const copyStudent = { ...student }
+const updatedCustomer = {
+  ...customer,
+  friends: customer.friends,
+}
 
-student.name = "Max"
+console.log(customer.friends === updatedCustomer.friends)
 
-// Чему равно copyStudent.name после выполнения этого кода?
+// Какое значение будет выведено в консоль?
