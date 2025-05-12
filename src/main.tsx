@@ -1,84 +1,22 @@
 import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-type User = {
-  id: number
-  name: string
-  personalData: PersonalData
-}
-
-type PersonalData = {
-  gender: string
-  age: number
-  technologies: Technologies[]
-}
-
-type Technologies = "HTML" | "CSS" | "React" | "JS/TS" | "Redux"
-
 const UsersList = () => {
-  const [users] = useState<User[]>([
-    {
-      id: 1,
-      name: "Bob",
-      personalData: {
-        gender: "male",
-        age: 23,
-        technologies: ["HTML", "CSS", "React", "JS/TS", "Redux"],
-      },
-    },
-    {
-      id: 2,
-      name: "Alex",
-      personalData: {
-        gender: "male",
-        age: 21,
-        technologies: ["HTML", "CSS", "React"],
-      },
-    },
-    {
-      id: 3,
-      name: "Ann",
-      personalData: {
-        gender: "female",
-        age: 26,
-        technologies: ["HTML", "CSS", "JS/TS"],
-      },
-    },
-    {
-      id: 4,
-      name: "Helen",
-      personalData: {
-        gender: "female",
-        age: 31,
-        technologies: ["HTML", "CSS"],
-      },
-    },
-    {
-      id: 5,
-      name: "Donald",
-      personalData: {
-        gender: "male",
-        age: 28,
-        technologies: ["React", "JS/TS", "Redux"],
-      },
-    },
-  ])
+  const [users, setUsers] = useState<string[]>(["Bob", "Alex", "Ann"])
+
+  const getUser = (user: string, i: number) => <li key={i}>{user}</li>
+
+  const usersList = XXX === 0 ? <p>List is empty</p> : <ul>{users.map(getUser)}</ul>
 
   return (
-    <ul>
-      {users.map((u) => {
-        return u.XXX.length >= 5 ? (
-          <li key={u.id}>{`User ${u.name}. ${u.personalData.age}. Ready to work.`}</li>
-        ) : (
-          <li key={u.id}>{`User ${u.name}. ${u.personalData.age}. `}</li>
-        )
-      })}
-    </ul>
+    <main>
+      <button onClick={() => setUsers([])}>Clear list</button>
+      <h4>User list:</h4>
+      {usersList}
+    </main>
   )
 }
 
 createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Те пользователи, у которых в стэке пять и более технологий, должны в списке
-// быть отмечены, как готовые к работе.
-// Что надо вставить вместо XXX, чтобы код выполнял данное условие?
+// Что надо вставить вместо XXX, чтобы код корректно работал со списком пользователей?
