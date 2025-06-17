@@ -1,27 +1,23 @@
-type Action = {
-  type: "SUM" | "SUB" | "MULT" | "DIV" | "EXP"
-  payload: number
+import { useState } from "react"
+import { createRoot } from "react-dom/client"
+
+const PasswordChecker = () => {
+  const [password, setPassword] = useState<string>("")
+
+  return (
+    <main>
+      <p>Your password must have more than 8 charters!</p>
+      <input
+        placeholder={"Enter your password"}
+        value={password}
+        onChange={(e) => setPassword(e.currentTarget.value)}
+        type={"password"}
+      />
+      {XXX < 9 && <p style={{ color: "red" }}>The password is too short!</p>}
+    </main>
+  )
 }
 
-export const calculator = (state: number, action: Action): number => {
-  switch (action.type) {
-    case "SUM":
-      return state + action.payload
-    case "SUB":
-      return state - action.payload
-    case "DIV":
-      return state / action.payload
-    case "MULT":
-      return state * action.payload
-    case "EXP":
-      return state ** action.payload
-    default:
-      return state
-  }
-}
-const result = calculator(10, { XXX, payload: 0 })
-if (!(result - 1)) {
-  console.log("IT-INCUBATOR")
-}
+createRoot(document.getElementById("root")!).render(<PasswordChecker />)
 
-// Что надо написать вместо XXX чтобы в консоли появилась строка "IT-INCUBATOR"?
+// Что надо вставить вместо XXX, чтобы код работал нормально?
