@@ -1,37 +1,36 @@
-type Student = {
+type User = {
   id: number
   name: string
+  status: "online" | "offline"
 }
 
-type Friends = {
-  [key: string]: string[]
+type Address = {
+  country: string
+  city: string
+  email: string
 }
 
-export const students: Student[] = [
-  { id: 1, name: "Bob" },
-  { id: 2, name: "Alex" },
-  { id: 3, name: "Ann" },
-  { id: 4, name: "Charley" },
+type Adresses = {
+  [userID: string]: Address
+}
+
+export const users: User[] = [
+  { id: 1, name: "Bob", status: "online" },
+  { id: 2, name: "Alex", status: "offline" },
+  { id: 3, name: "Ann", status: "offline" },
 ]
 
-export const friends: Friends = {
-  1: ["Oliver", "Jack", "Oscar"],
-  2: ["Jack", "Lewis", "Thomas"],
-  3: ["William", "Michael", "Lewis"],
-  4: ["Oscar", "James", "William"],
+const addresses: Adresses = {
+  1: { country: "Russia", city: "Moscow", email: "hey@email.com" },
+  2: { country: "Ukraine", city: "Kiev", email: "yo@send.ua" },
+  3: { country: "Belarus", city: "Minsk", email: "wow@gogo.ru" },
 }
 
-const getMutualFriends = (st_1: Student, st_2: Student) => {
-  const result: string[] = []
-  friends[st_1.id].forEach((f) => (friends[xxx].includes(f) ? result.push(f) : null))
-  return result
+export const updateUserAddress = (userID: number, key: string, newValue: string) => {
+  return { ...addresses, [userID]: { ...addresses[xxx], [key]: newValue } }
 }
-
-// Дан массив студентов и структура,
-// которая содержит список друзей каждого из студентов.
-// Так же дана функция getMutualFriends, проверяющая наличие общих друзей
-// у двух выбранных студентов.
-// Функция принимает параметром два объекта типа Student
-// и возвращает массив с именами общих друзей,
-// если они есть и пустой массив, если таковых нету.
-// Что надо написать вместо ххх, чтобы функция работала?
+// Дан список пользователей и структура, хранящая адреса пользователей.
+// Так же дана функция updateUserAddress,
+// которая обновляет указанное в параметрах поле в адресе пользователя.
+// Пример использования функции: updateUserAddress(2, "city", "Dnepropetrovsk")
+// Что надо написать вместо ххх, чтобы функция работала корректно?
