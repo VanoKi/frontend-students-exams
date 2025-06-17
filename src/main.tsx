@@ -1,22 +1,27 @@
-import { useState } from "react"
-import { createRoot } from "react-dom/client"
-
-const UsersList = () => {
-  const [users, setUsers] = useState<string[]>(["Bob", "Alex", "Ann"])
-
-  const getUser = (user: string, i: number) => <li key={i}>{user}</li>
-
-  const usersList = XXX === 0 ? <p>List is empty</p> : <ul>{users.map(getUser)}</ul>
-
-  return (
-    <main>
-      <button onClick={() => setUsers([])}>Clear list</button>
-      <h4>User list:</h4>
-      {usersList}
-    </main>
-  )
+type Student = {
+  id: number
+  name: string
 }
 
-createRoot(document.getElementById("root")!).render(<UsersList />)
+type Friends = {
+  [key: string]: string[]
+}
 
-// Что надо вставить вместо XXX, чтобы код корректно работал со списком пользователей?
+export const students: Student[] = [
+  { id: 1, name: "Bob" },
+  { id: 2, name: "Alex" },
+  { id: 3, name: "Ann" },
+  { id: 4, name: "Charley" },
+]
+
+export const friends: Friends = {
+  1: ["Oliver", "Jack", "Oscar"],
+  2: ["Jack", "Lewis", "Thomas"],
+  3: ["William", "Michael", "Lewis"],
+  4: ["Oscar", "James", "William"],
+}
+
+//Дан список студентов и структура,
+//которая содержит список друзей каждого из студентов.
+//Id студента является ключом к массиву его друзей.
+//Какое значение лежит тут: friends[3][1]?
