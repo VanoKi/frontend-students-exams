@@ -1,23 +1,22 @@
 import { useState } from "react"
 import { createRoot } from "react-dom/client"
 
-const PasswordChecker = () => {
-  const [password, setPassword] = useState<string>("")
+const UsersList = () => {
+  const [users, setUsers] = useState<string[]>(["Bob", "Alex", "Ann"])
+
+  const getUser = (user: string, i: number) => <li key={i}>{user}</li>
+
+  const usersList = XXX === 0 ? <p>List is empty</p> : <ul>{users.map(getUser)}</ul>
 
   return (
     <main>
-      <p>Your password must have more than 8 charters!</p>
-      <input
-        placeholder={"Enter your password"}
-        value={password}
-        onChange={(e) => setPassword(e.currentTarget.value)}
-        type={"password"}
-      />
-      {XXX < 9 && <p style={{ color: "red" }}>The password is too short!</p>}
+      <button onClick={() => setUsers([])}>Clear list</button>
+      <h4>User list:</h4>
+      {usersList}
     </main>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<PasswordChecker />)
+createRoot(document.getElementById("root")!).render(<UsersList />)
 
-// Что надо вставить вместо XXX, чтобы код работал нормально?
+// Что надо вставить вместо XXX, чтобы код корректно работал со списком пользователей?
