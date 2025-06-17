@@ -1,27 +1,27 @@
-type User = {
-  id: number
-  userName: string
-  email: string
-  password: string
+type Action = {
+  type: "SUM" | "SUB" | "MULT" | "DIV" | "EXP"
+  payload: number
 }
 
-type ChangeUserPasswordAction = {
-  type: "CHANGE-USER-PASSWORD"
-  payload: {
-    XXX
-    YYY
-  }
-}
-
-export const userReducer = (state: User[], action: ChangeUserPasswordAction): User[] => {
+export const calculator = (state: number, action: Action): number => {
   switch (action.type) {
-    case "CHANGE-USER-PASSWORD":
-      return state.map((u) => (u.id === action.payload.id ? { ...u, password: action.payload.newPassword } : u))
+    case "SUM":
+      return state + action.payload
+    case "SUB":
+      return state - action.payload
+    case "DIV":
+      return state / action.payload
+    case "MULT":
+      return state * action.payload
+    case "EXP":
+      return state ** action.payload
     default:
       return state
   }
 }
+const result = calculator(10, { XXX, payload: 0 })
+if (!(result - 1)) {
+  console.log("IT-INCUBATOR")
+}
 
-// Какой код должен быть написан вместо XXX и YYY в типе
-// ChangeUserPasswordAction, что бы редьюсер работал?
-// В ответе напишите через пробел: XXX YYY
+// Что надо написать вместо XXX чтобы в консоли появилась строка "IT-INCUBATOR"?
