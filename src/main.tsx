@@ -1,9 +1,19 @@
-const name = "Dima"
-
-const student = {
-  [name]: name,
+type Action = {
+  type: "SUM" | "SUB" | "MULT" | "DIV"
+  payload: number
 }
 
-export const number = student["name"] ? 11.56 : 47.78
+export const calculator = (state: number, action: Action): number => {
+  switch (action.type) {
+    case "SUM":
+      return state + action.payload
+    case "SUB":
+      return state - action.payload
+    case "DIV":
+      return state / action.payload
+    default:
+      return state
+  }
+}
 
-// Какое значение получит переменная number?
+//Обработка какого action.type не предусмотрена в функции calculator?
