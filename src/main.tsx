@@ -1,11 +1,7 @@
-const guest = {
-  name: "Eva",
-  age: 49,
-  scores: [82.69, 88.85, 25.47],
-}
+const { capital } = { capital: 11 }
 
-export const { name, age, scores } = guest
+const multiply = capital * 46.49
 
-console.log(guest.scores === scores && age)
+export const randomValue = multiply && "Natali" && "Yana"
 
-// Какое значение мы увидим в консоли?
+// Какое значение получит переменная randomValue ?
