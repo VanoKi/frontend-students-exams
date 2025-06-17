@@ -1,7 +1,9 @@
-const { capital } = { capital: 11 }
+const name = "Dima"
 
-const multiply = capital * 46.49
+const student = {
+  [name]: name,
+}
 
-export const randomValue = multiply && "Natali" && "Yana"
+export const number = student["name"] ? 11.56 : 47.78
 
-// Какое значение получит переменная randomValue ?
+// Какое значение получит переменная number?
