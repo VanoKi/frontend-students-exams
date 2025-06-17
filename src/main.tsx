@@ -1,13 +1,21 @@
-const community = {
-  name: "Michail",
-  scores: 6,
+type Action = {
+  type: "SUM" | "SUB" | "MULT" | "DIV" | "EXP"
+  payload: number
 }
 
-const basis = {
-  ...community,
-  scores: community.scores++,
+export const calculator = (state: number, action: Action): number => {
+  switch (action.type) {
+    case "SUM":
+      return state + action.payload
+    case "SUB":
+      return state - action.payload
+    case "DIV":
+      return state / action.payload
+    case "EXP":
+      return state ** action.payload
+    default:
+      return state
+  }
 }
 
-export const scores = basis.scores
-
-// Какое значение получит переменная scores?
+// Что вернёт такой вызов функции: calculator(10, {type: "MULT", payload: 2})?
