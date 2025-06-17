@@ -1,24 +1,27 @@
-type Action = {
-  type: "SUM" | "SUB" | "MULT" | "DIV"
-  payload: number
+type User = {
+  id: number
+  userName: string
+  email: string
+  password: string
 }
 
-export const calculator = (state: number, action: Action): number => {
+type ChangeUserPasswordAction = {
+  type: "CHANGE-USER-PASSWORD"
+  payload: {
+    XXX
+    YYY
+  }
+}
+
+export const userReducer = (state: User[], action: ChangeUserPasswordAction): User[] => {
   switch (action.type) {
-    case "SUM":
-      return state + action.payload
-    case "SUB":
-      return state - action.payload
-    case "DIV":
-      return state / action.payload
-    case "MULT":
-      return state * action.payload
+    case "CHANGE-USER-PASSWORD":
+      return state.map((u) => (u.id === action.payload.id ? { ...u, password: action.payload.newPassword } : u))
     default:
       return state
   }
 }
 
-const result = calculator(10, { XXX, payload: 5 })
-console.log(result)
-
-//Что надо написать вместо XXX, что бы переменная result содержала значение 5?
+// Какой код должен быть написан вместо XXX и YYY в типе
+// ChangeUserPasswordAction, что бы редьюсер работал?
+// В ответе напишите через пробел: XXX YYY
