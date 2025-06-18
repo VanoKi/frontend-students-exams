@@ -1,28 +1,36 @@
-const reducer = (state: any, action: any) => {
+type Status = "Stopped" | "Playing" | "Paused"
+
+type PlayerState = {
+  volume: number // in percents
+  trackUrl: string // 'https://blabla.com/track01.mp3',
+  currentPlayPosition: number // milliseconds,
+  status: Status
+}
+
+const playerReducer = (state: PlayerState, action: any) => {
   switch (action.type) {
-    case "TRACK-LIKED":
+    case "TRACK-VOLUME-CHANGED":
       return {
         ...state,
-        [XXX]: {
-          ...state[XXX],
-          likesCount: state[XXX].likesCount + 1,
-        },
+        volume: action.volumeLevel,
       }
     default:
       return state
   }
 }
 
-const likeTrackAC = (trackId: number) => ({ type: "TRACK-LIKED", trackId })
+export const muteTrackAC = () => ({ type: "TRACK-MUTED" })
+export const changeVolumeAC = (volumeLevel: number) => ({ type: "TRACK-VOLUME-CHANGED", volumeLevel })
+export const changeTrackAC = (url: string) => ({ type: "TRACK-URL-CHANGED", url })
+export const changeTrackPlayStatusAC = (status: Status) => ({ type: "TRACK-STATUS-CHANGED", status })
 
-const state = {
-  12: { id: 12, likesCount: 10 },
-  14: { id: 14, likesCount: 2 },
-  100: { id: 100, likesCount: 0 },
+const state: PlayerState = {
+  status: "Stopped",
+  currentPlayPosition: 1213,
+  trackUrl: "https://blabla.com/track01.mp3",
+  volume: 100,
 }
-const newState = reducer(state, likeTrackAC(14))
+const newState = playerReducer(state, changeVolumeAC(20))
+console.log(newState.volume === 20)
 
-console.log(newState[14].likesCount === 3)
-
-// Что нужно написать вместо XXX, чтобы в консоли увидеть true?
-// ❗ Захардкодженные значения использовать запрещено
+// Напишите вместо XXX правильную строку кода, чтобы изменить громкость трека и увидеть в консоли true.
