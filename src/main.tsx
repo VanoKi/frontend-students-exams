@@ -1,27 +1,25 @@
-type Student = {
-  id: number
-  name: string
+type State = {
+  count: number
+  username: string
 }
 
-type Friends = {
-  [key: string]: string[]
+type Action =
+  | { type: "INCREMENT" }
+  | { type: "DECREMENT" }
+  | { type: "SET_USERNAME"; payload: string }
+  | { type: "RESET" }
+
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case "INCREMENT":
+      return { ...state, count: state.count + 1 }
+    case "DECREMENT":
+      return { ...state, count: state.count - 1 }
+    case "SET_USERNAME":
+      return { ...state, username: action.payload }
+    case "RESET":
+      return { count: 0, username: "" }
+    default:
+      return state
+  }
 }
-
-export const students: Student[] = [
-  { id: 1, name: "Bob" },
-  { id: 2, name: "Alex" },
-  { id: 3, name: "Ann" },
-  { id: 4, name: "Charley" },
-]
-
-export const friends: Friends = {
-  1: ["Oliver", "Jack", "Oscar"],
-  2: ["Jack", "Lewis", "Thomas"],
-  3: ["William", "Michael", "Lewis"],
-  4: ["Oscar", "James", "William"],
-}
-
-//Дан список студентов и структура,
-//которая содержит список друзей каждого из студентов.
-//Id студента является ключом к массиву его друзей.
-//Какое значение лежит тут: friends[students[0].id][3]?
