@@ -23,3 +23,9 @@ const reducer = (state: State, action: Action): State => {
       return state
   }
 }
+
+console.log(reducer({ count: 1, username: "Bob" }, { type: "INCREMENT" }))
+console.log(reducer({ count: 3, username: "Ann" }, { type: "DECREMENT" }))
+console.log(reducer({ count: 7, username: "Bob" }, { type: "SET_USERNAME", payload: "Alex" }))
+console.log(reducer({ count: 5, username: "Kate" }, { type: "RESET" }))
+console.log(reducer({ count: 0, username: "Test" }, { type: "SET_USERNAME" }))
