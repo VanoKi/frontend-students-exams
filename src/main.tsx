@@ -1,26 +1,17 @@
-type Status = "Stopped" | "Playing" | "Paused"
+//@ts-ignore
+const value = [0, [1, 0]][1][0]
+let quantity
 
-type PlayerState = {
-  volume: number // in percents
-  trackUrl: string // 'https://blabla.com/track01.mp3',
-  currentPlayPosition: number // milliseconds,
-  status: Status
+switch (value) {
+  case 0:
+    quantity = 28
+    break
+  case 1:
+    quantity = 38
+    break
+  default:
+    quantity = 62
+    break
 }
 
-export const playerReducer = (state: PlayerState, action: any) => {
-  switch (action.type) {
-    case XXX:
-      return {
-        ...state,
-        trackUrl: action.url,
-      }
-    default:
-      return state
-  }
-}
-
-export const muteTrackAC = () => ({ type: "TRACK-MUTED" })
-export const changeTrackAC = (url: string) => ({ type: "TRACK-URL-CHANGED", url })
-export const changeTrackPlayStatusAC = (status: Status) => ({ type: "TRACK-STATUS-CHANGED", status })
-
-// Какой тип должен быть вместо XXX?
+// Какое значение получит переменная quantity?
