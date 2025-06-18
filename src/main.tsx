@@ -1,6 +1,7 @@
 import React, { useState } from "react"
+import ReactDOM from "react-dom/client"
 
-function NameInput() {
+function Main() {
   const [name, setName] = useState("")
 
   const handleChange = (event) => {
@@ -15,4 +16,4 @@ function NameInput() {
   )
 }
 
-export default NameInput
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(<Main />)
