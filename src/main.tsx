@@ -15,3 +15,4 @@ switch (value) {
 }
 
 // Какое значение получит переменная quantity?
+console.log(quantity)
