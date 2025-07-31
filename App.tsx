@@ -1,27 +1,17 @@
-import { useState } from "react"
-import { CountDisplay } from "./components/CountDisplay.tsx"
-import { Buttons } from "./components/Buttons.tsx"
-import "./App.css"
+let number = 10
 
-const App = () => {
-  let [count, setCount] = useState(0)
-  const onClickHandler = () => {
-    if (count < 5) {
-      setCount(++count)
-    }
-  }
-  const onClickResetHandler = () => {
-    setCount(0)
-  }
-  return (
-    <>
-      <div className={"counter"}>
-        <h1>Chelyabinsk Design Detected</h1>
-        <CountDisplay count={count} />
-        <Buttons onClickHandker={onClickHandler} oncClickResetHandler={onClickResetHandler} count={count} />
-      </div>
-    </>
-  )
+if (number > 0) {
+  let number = 58
+  number++
 }
 
-export default App
+const getNumber = (number: any) => {
+  number *= 10
+  return number
+}
+
+export const bigValue = getNumber("number") || number
+
+// Какое значение получит переменная bigValue?
+
+console.log(bigValue)
