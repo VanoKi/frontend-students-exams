@@ -1,17 +1,21 @@
-let number = 10
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
 
-if (number > 0) {
-  let number = 58
-  number++
+let initialState = { items: [{ name: "Dimych" }, { name: "Ignat" }] }
+const usersReducer = (state = initialState, action: any) => {
+  return state
 }
 
-const getNumber = (number: any) => {
-  number *= 10
-  return number
-}
+const store = configureStore({
+  reducer: combineReducers({
+    users: usersReducer,
+  }),
+})
 
-export const bigValue = getNumber("number") || number
+store.subscribe(() => {
+  const state = store
+  console.log(state)
+})
 
-// Какое значение получит переменная bigValue?
+store.dispatch({ type: "ANY" })
 
-console.log(bigValue)
+// Что нужно написать вместо XXX, чтобы получить актуальный стейт?
