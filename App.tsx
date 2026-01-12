@@ -5,3 +5,4 @@ const result = myFunction(346, undefined) % 2
 export const winner = result ? "Vladimir" : "Ekaterina"
 
 // Какое значение получит переменная winner?
+console.log(winner)
