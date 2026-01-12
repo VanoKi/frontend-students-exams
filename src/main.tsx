@@ -1,67 +1,36 @@
-import { useSelector } from "react-redux"
-import { createRoot } from "react-dom/client"
-import { configureStore } from "@reduxjs/toolkit"
-
-type Student = {
-  id: number
-  name: string
-  age: number
+type TracksState = {
+  volume: number // in percents
+  trackUrl: string // 'https://blabla.com/track01.mp3',
+  currentPlayPosition: number // milliseconds,
 }
 
-const initState = {
-  students: [
-    { id: 1, name: "Bob", age: 23 },
-    { id: 2, name: "Alex", age: 22 },
-  ] as Student[],
-}
-
-type AddStudentAction = {
-  type: "ADD-STUDENT"
-  name: string
-  age: number
-  id: number
-}
-
-type InitialState = typeof initState
-
-const studentsReducer = (state: InitialState = initState, action: AddStudentAction): InitialState => {
+export const reducer = (state: TracksState, action: any) => {
   switch (action.type) {
-    case "ADD-STUDENT":
+    case XXX:
       return {
         ...state,
-        students: [
-          ...state.students,
-          {
-            name: action.name,
-            age: action.age,
-            id: action.id,
-          },
-        ],
+        trackUrl: action.url,
+      }
+    case YYY:
+      return {
+        ...state,
+        volume: 0,
+      }
+    case ZZZ:
+      return {
+        ...state,
+        currentPlayPosition: 0,
       }
     default:
       return state
   }
 }
 
-export const appStore = configureStore({ reducer: studentsReducer })
-type RootState = ReturnType<typeof studentsReducer>
+export const muteTrackAC = () => ({ type: "TRACK-MUTED" })
+export const changeTrackAC = (url: string) => ({ type: "TRACK-URL-CHANGED", url })
 
-const StudentList = () => {
-  const students = useSelector((state: RootState) => state.students)
+// перемотатьНаНачало:
+export const rewindToStart = () => ({ type: "TRACK-REWOUND-TO-START" })
 
-  return (
-    <ul>
-      {students.map((s) => (
-        <li key={s.id}>{`${s.name}. ${s.age} years.`}</li>
-      ))}
-    </ul>
-  )
-}
-
-createRoot(document.getElementById("root")!).render(
-  <XXX YYY={ZZZ}>
-    <StudentList />
-  </XXX>,
-)
-// Что нужно написать вместо XXX, YYY и ZZZ, чтобы отобразился список студентов?
-// Ответ дайте через пробел, например: doc cat fish
+// Какие типы должны быть вместо XXX, YYY и ZZZ?
+// Ответ дать через пробел, например:  'BLABLA' 'HEYНЕY' 'HIPHOP'
