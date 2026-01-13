@@ -1,27 +1,6 @@
-export const reducer = (state: any, action: any) => {
-  switch (action.type) {
-    case "TRACK-ADDED":
-      return {
-        ...state,
-        [action.trackId]: {
-          id: action.trackId,
-          likesCount: 0,
-        },
-      }
-    default:
-      return state
-  }
-}
+const students = [{ name: "Bob" }, { name: "Alex" }, { name: "Donald" }]
+const filteredStudents = students.filter((s) => s.name !== "Kate")
+const lengthDiff = students.length - filteredStudents.length
+export const newValue = (lengthDiff && 98.21) || (11.83 && 55.64)
 
-const addTrackAC = (trackId: number) => ({ type: "TRACK-ADDED", trackId })
-
-const state = {
-  12: { id: 12, likesCount: 10 },
-  14: { id: 14, likesCount: 2 },
-  100: { id: 100, likesCount: 0 },
-}
-
-const newState = reducer(state, addTrackAC(300))
-console.log(newState[300].likesCount === 0)
-
-// Что нужно написать вместо XXX, чтобы в консоли увидеть true?
+// Какое значение получит переменная newValue?
