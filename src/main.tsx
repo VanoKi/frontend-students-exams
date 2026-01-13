@@ -1,57 +1,74 @@
-import axios from "axios"
+import { Provider, useDispatch, useSelector } from "react-redux"
 import { createRoot } from "react-dom/client"
-import { useEffect, useState } from "react"
+import { configureStore } from "@reduxjs/toolkit"
 
-// Types
-type Post = {
-  id: string
-  body: string
-  title: string
-  userId: string
+const listItemStyles = {
+  width: "100px",
+  borderBottom: "1px solid gray",
+  cursor: "pointer",
 }
 
-// Api
-export const instance = axios.create({ baseURL: "https://exams-frontend.kimitsu.it-incubator.io/api/" })
-
-const postsAPI = {
-  getPosts() {
-    // Promise.resolve() стоит в качестве заглушки, чтобы TS не ругался и код компилировался
-    // Promise.resolve() нужно удалить и написать правильный запрос для получения постов
-    return Promise.resolve()
-  },
+const students = {
+  students: [
+    { id: 1, name: "Bob" },
+    { id: 2, name: "Alex" },
+    { id: 3, name: "Donald" },
+    { id: 4, name: "Ann" },
+  ],
 }
 
-// App
-export const App = () => {
-  const [posts, setPosts] = useState<Post[]>([])
+type RemoveStudentAT = {
+  type: "REMOVE-STUDENT"
+  id: number
+}
 
-  useEffect(() => {
-    postsAPI.getPosts().then((res: any) => {
-      setPosts(res.data)
-    })
-  }, [])
+export const removeStudentAC = (id: number): RemoveStudentAT => ({
+  type: "REMOVE-STUDENT",
+  id,
+})
+
+const studentsReducer = (state = students, action: RemoveStudentAT) => {
+  switch (action.type) {
+    case "REMOVE-STUDENT":
+      return {
+        ...state,
+        students: state.students.filter((s) => s.id !== action.id),
+      }
+    default:
+      return state
+  }
+}
+
+const store = configureStore({ reducer: studentsReducer })
+type RootStateType = ReturnType<typeof studentsReducer>
+
+const StudentList = () => {
+  const students = useSelector((state: RootStateType) => state.students)
+
+  const dispatch = useDispatch()
 
   return (
-    <>
-      <h1>📜 Список постов</h1>
-      {posts.length ? (
-        posts.map((p) => {
-          return (
-            <div key={p.id}>
-              <b>title</b>: {p.title}
-            </div>
-          )
-        })
-      ) : (
-        <h2>Постов нету 😥</h2>
-      )}
-    </>
+    <ol>
+      {students.map((s) => {
+        const removeStudent = () => {
+          // XXX(YYY(ZZZ))
+        }
+
+        return (
+          <li key={s.id} style={listItemStyles} onClick={removeStudent}>
+            {s.name}
+          </li>
+        )
+      })}
+    </ol>
   )
 }
 
-createRoot(document.getElementById("root")!).render(<App />)
+createRoot(document.getElementById("root")!).render(
+  <Provider store={store}>
+    <StudentList />
+  </Provider>,
+)
 
-// 📜 Описание:
-// Напишите запрос на сервер для получения всех постов
-// Типизацию возвращаемых данных в ответе указывать необязательно, но можно и указать (в ответах учтены оба варианта).
-// Исправленную версию строки напишите в качестве ответа.
+// Что нужно написать вместо XXX, YYY и ZZZ, чтобы при клике по имени студент удалялся из списка?
+// Ответ дайте через пробел, например: doc cat fish
