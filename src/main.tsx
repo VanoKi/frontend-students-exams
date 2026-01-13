@@ -1,67 +1,134 @@
-import { useSelector } from "react-redux"
+import axios from "axios"
 import { createRoot } from "react-dom/client"
-import { configureStore } from "@reduxjs/toolkit"
+import { useEffect, useState } from "react"
 
-type Student = {
+// Types
+type Product = {
+  id: string
+  title: string
+  description: string
+  price: number
+}
+
+type Film = {
   id: number
-  name: string
-  age: number
+  nameOriginal: string
+  description: string
+  ratingImdb: number
 }
 
-const initState = {
-  students: [
-    { id: 1, name: "Bob", age: 23 },
-    { id: 2, name: "Alex", age: 22 },
-  ] as Student[],
+type ProductsResponse = {
+  total: number
+  messages: string[]
+  page: number
+  pageCount: number
+  data: Product[]
 }
 
-type AddStudentAction = {
-  type: "ADD-STUDENT"
-  name: string
-  age: number
-  id: number
+type FilmsResponse = {
+  total: number
+  messages: string[]
+  page: number
+  pageCount: number
+  data: Film[]
 }
 
-type InitialState = typeof initState
-
-const studentsReducer = (state: InitialState = initState, action: AddStudentAction): InitialState => {
-  switch (action.type) {
-    case "ADD-STUDENT":
-      return {
-        ...state,
-        students: [
-          ...state.students,
-          {
-            name: action.name,
-            age: action.age,
-            id: action.id,
-          },
-        ],
-      }
-    default:
-      return state
-  }
+type CommonResponse = {
+  // your code
 }
 
-export const appStore = configureStore({ reducer: studentsReducer })
-type RootState = ReturnType<typeof studentsReducer>
+// Api
+const instance = axios.create({ baseURL: "https://exams-frontend.kimitsu.it-incubator.io/api/" })
 
-const StudentList = () => {
-  const students = useSelector((state: RootState) => state.students)
+const api = {
+  getProducts() {
+    return instance.get<ProductsResponse>("products")
+  },
+  getFilms() {
+    return instance.get<FilmsResponse>("films")
+  },
+}
 
+// App
+const App = () => {
   return (
-    <ul>
-      {students.map((s) => (
-        <li key={s.id}>{`${s.name}. ${s.age} years.`}</li>
-      ))}
-    </ul>
+    <>
+      <h1>🛒 Products && 🎦 Films</h1>
+      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <Products />
+        <Films />
+      </div>
+    </>
   )
 }
 
-createRoot(document.getElementById("root")!).render(
-  <XXX YYY={ZZZ}>
-    <StudentList />
-  </XXX>,
-)
-// Что нужно написать вместо XXX, YYY и ZZZ, чтобы отобразился список студентов?
-// Ответ дайте через пробел, например: doc cat fish
+const Products = () => {
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    api.getProducts().then((res) => setProducts(res.data.data))
+  }, [])
+
+  return (
+    <div style={{ width: "45%" }}>
+      <h2>🛒 Products</h2>
+      <div>
+        {products.map((p) => {
+          return (
+            <div key={p.id}>
+              <b>{p.title}</b>
+              <p>{p.description}</p>
+              <p>💵 {p.price} $</p>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+const Films = () => {
+  const [films, setFilms] = useState<Film[]>([])
+
+  useEffect(() => {
+    api.getFilms().then((res) => setFilms(res.data.data))
+  }, [])
+
+  return (
+    <div style={{ width: "45%" }}>
+      <h2>🎦 Films</h2>
+      <div>
+        {films.map((f) => {
+          return (
+            <div key={f.id}>
+              <b>{f.nameOriginal}</b>
+              <p>{f.description}</p>
+              <p>⭐ {f.ratingImdb} </p>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+createRoot(document.getElementById("root")!).render(<App />)
+
+// 📜 Описание:
+// При запуске проекта на экране вы увидите 2 списка: Products и Films.
+// С ними все хорошо, но обратите внимание на типизацию ответов с сервера ProductsResponse и FilmsResponse.
+// ❗Дублирование типов на лицо.
+// Ваша задача написать дженериковый тип CommonResponse и заменить им дублирующие типы.
+// ❗Очередность свойств в типах менять запрещено (по причине что нам будет тяжело перебрать все правильные варианты)
+// ❗Параметр тип назовите буквой T
+//
+// В качестве ответа нужно скопировать полностью рабочий дженериковый тип CommonResponse
+//
+// 🖥 Пример ответа:
+// type CommonResponse = {
+//   total: T
+//   messages: T[]
+//   page: T
+//   pageCount: T
+//   data: T[]
+// }
