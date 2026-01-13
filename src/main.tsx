@@ -1,21 +1,57 @@
-export const reducer = (state: any, action: any) => {
-  switch (action.type) {
-    case "TRACK-DELETED":
-      return state.filter((track: any) => track.id !== action.trackId)
-    default:
-      return state
-  }
+import axios from "axios"
+import { createRoot } from "react-dom/client"
+import { useEffect, useState } from "react"
+
+// Types
+type Post = {
+  id: string
+  body: string
+  title: string
+  userId: string
 }
 
-const deleteTrackAC = (trackId: number) => ({ type: "TRACK-DELETED", trackId })
+// Api
+export const instance = axios.create({ baseURL: "https://exams-frontend.kimitsu.it-incubator.io/api/" })
 
-const state = [
-  { id: 12, likesCount: 10 },
-  { id: 14, likesCount: 2 },
-  { id: 100, likesCount: 0 },
-]
+const postsAPI = {
+  getPosts() {
+    // Promise.resolve() стоит в качестве заглушки, чтобы TS не ругался и код компилировался
+    // Promise.resolve() нужно удалить и написать правильный запрос для получения постов
+    return Promise.resolve()
+  },
+}
 
-const newState = reducer(state, deleteTrackAC(14))
-console.log(newState.length === 2)
+// App
+export const App = () => {
+  const [posts, setPosts] = useState<Post[]>([])
 
-// Что нужно написать вместо XXX, чтобы корректно удалить трек и в консоли увидеть true?
+  useEffect(() => {
+    postsAPI.getPosts().then((res: any) => {
+      setPosts(res.data)
+    })
+  }, [])
+
+  return (
+    <>
+      <h1>📜 Список постов</h1>
+      {posts.length ? (
+        posts.map((p) => {
+          return (
+            <div key={p.id}>
+              <b>title</b>: {p.title}
+            </div>
+          )
+        })
+      ) : (
+        <h2>Постов нету 😥</h2>
+      )}
+    </>
+  )
+}
+
+createRoot(document.getElementById("root")!).render(<App />)
+
+// 📜 Описание:
+// Напишите запрос на сервер для получения всех постов
+// Типизацию возвращаемых данных в ответе указывать необязательно, но можно и указать (в ответах учтены оба варианта).
+// Исправленную версию строки напишите в качестве ответа.
