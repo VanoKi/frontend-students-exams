@@ -1,20 +1,57 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import axios from "axios"
+import { createRoot } from "react-dom/client"
+import { useEffect, useState } from "react"
 
-let initialState = { items: [{ name: "Dimych" }, { name: "Ignat" }] }
-const usersReducer = (state = initialState, action: any) => {
-  return state
+// Types
+type Post = {
+  id: string
+  body: string
+  title: string
+  userId: string
 }
 
-const store = configureStore({
-  reducer: combineReducers({
-    users: usersReducer,
-  }),
-})
+// Api
+export const instance = axios.create({ baseURL: "https://exams-frontend.kimitsu.it-incubator.io/api/" })
 
-store.XXX(() => {
-  console.log("state changed")
-})
+const postsAPI = {
+  getPosts() {
+    // Promise.resolve() стоит в качестве заглушки, чтобы TS не ругался и код компилировался
+    // Promise.resolve() нужно удалить и написать правильный запрос для получения постов
+    return Promise.resolve()
+  },
+}
 
-store.dispatch({ type: "ANY" })
+// App
+export const App = () => {
+  const [posts, setPosts] = useState<Post[]>([])
 
-// Что нужно написать вместо XXX, чтобы в консоли увидеть 'state changed'?
+  useEffect(() => {
+    postsAPI.getPosts().then((res: any) => {
+      setPosts(res.data)
+    })
+  }, [])
+
+  return (
+    <>
+      <h1>📜 Список постов</h1>
+      {posts.length ? (
+        posts.map((p) => {
+          return (
+            <div key={p.id}>
+              <b>title</b>: {p.title}
+            </div>
+          )
+        })
+      ) : (
+        <h2>Постов нету 😥</h2>
+      )}
+    </>
+  )
+}
+
+createRoot(document.getElementById("root")!).render(<App />)
+
+// 📜 Описание:
+// Напишите запрос на сервер для получения всех постов
+// Типизацию возвращаемых данных в ответе указывать необязательно, но можно и указать (в ответах учтены оба варианта).
+// Исправленную версию строки напишите в качестве ответа.
