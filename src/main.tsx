@@ -1,36 +1,62 @@
-type TracksState = {
-  volume: number // in percents
-  trackUrl: string // 'https://blabla.com/track01.mp3',
-  currentPlayPosition: number // milliseconds,
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { createRoot } from "react-dom/client"
+
+// Types
+type Todolist = {
+  id: string
+  title: string
+  order: number
+  createdAt: string
+  updatedAt: string
+  completed: boolean
 }
 
-export const reducer = (state: TracksState, action: any) => {
-  switch (action.type) {
-    case XXX:
-      return {
-        ...state,
-        trackUrl: action.url,
-      }
-    case YYY:
-      return {
-        ...state,
-        volume: 0,
-      }
-    case ZZZ:
-      return {
-        ...state,
-        currentPlayPosition: 0,
-      }
-    default:
-      return state
-  }
+// Api
+const instance = axios.create({ baseURL: "https://exams-frontend.kimitsu.it-incubator.io/api/" })
+
+const todosAPI = {
+  getTodo(todoId: string) {
+    return instance.get<Todolist>(`todos/ ${todoId}`)
+  },
 }
 
-export const muteTrackAC = () => ({ type: "TRACK-MUTED" })
-export const changeTrackAC = (url: string) => ({ type: "TRACK-URL-CHANGED", url })
+// App
+export const App = () => {
+  const [todo, setTodo] = useState<Todolist | null>(null)
+  const [error, setError] = useState<string>("")
 
-// перемотатьНаНачало:
-export const rewindToStart = () => ({ type: "TRACK-REWOUND-TO-START" })
+  useEffect(() => {
+    const todoId = "637cb9342f24ad82bcb07d8d"
+    todosAPI
+      .getTodo(todoId)
+      .then((res: any) => setTodo(res.data))
+      .catch(() => {
+        setError("Ошибка 😰. Анализируй network 😉")
+      })
+  }, [])
 
-// Какие типы должны быть вместо XXX, YYY и ZZZ?
-// Ответ дать через пробел, например:  'BLABLA' 'HEYНЕY' 'HIPHOP'
+  return (
+    <>
+      <h2>✅ Тудулист</h2>
+      {!!todo ? (
+        <div>
+          <div style={todo?.completed ? { color: "grey" } : {}} key={todo?.id}>
+            <input type="checkbox" checked={todo?.completed} />
+            <b>Описание</b>: {todo?.title}
+          </div>
+          <h2>Так держать. Ты справился 🚀</h2>
+        </div>
+      ) : (
+        <h2 style={{ color: "red" }}>{error}</h2>
+      )}
+    </>
+  )
+}
+
+createRoot(document.getElementById("root")!).render(<App />)
+
+// 📜 Описание:
+// Студент по неопытности допустил одну маленькую ошибку, но из-за нее он не может вывести на экран тудулист.
+// Найдите ошибку и вставьте исправленную версию строки кода в качестве ответа
+// P.S. Эта ошибка из реальной жизни, студенты часто ошибаются подобным образом и не могут понять в чем дело.
