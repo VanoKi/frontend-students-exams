@@ -15,9 +15,7 @@ export const instance = axios.create({ baseURL: "https://exams-frontend.kimitsu.
 
 const postsAPI = {
   getPosts() {
-    // Promise.resolve() стоит в качестве заглушки, чтобы TS не ругался и код компилировался
-    // Promise.resolve() нужно удалить и написать правильный запрос для получения постов
-    return Promise.resolve()
+    return instance.get<Post[]>("posts")
   },
 }
 
