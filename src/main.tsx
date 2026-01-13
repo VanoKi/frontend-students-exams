@@ -1,36 +1,20 @@
-type Status = "Stopped" | "Playing" | "Paused"
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
 
-type PlayerState = {
-  volume: number // in percents
-  trackUrl: string // 'https://blabla.com/track01.mp3',
-  currentPlayPosition: number // milliseconds,
-  status: Status
+let initialState = { items: [{ name: "Dimych" }, { name: "Ignat" }] }
+const usersReducer = (state = initialState, action: any) => {
+  return state
 }
 
-const playerReducer = (state: PlayerState, action: any) => {
-  switch (action.type) {
-    case "TRACK-VOLUME-CHANGED":
-      return {
-        ...state,
-        XXX,
-      }
-    default:
-      return state
-  }
-}
+const store = configureStore({
+  reducer: combineReducers({
+    users: usersReducer,
+  }),
+})
 
-export const muteTrackAC = () => ({ type: "TRACK-MUTED" })
-export const changeVolumeAC = (volumeLevel: number) => ({ type: "TRACK-VOLUME-CHANGED", volumeLevel })
-export const changeTrackAC = (url: string) => ({ type: "TRACK-URL-CHANGED", url })
-export const changeTrackPlayStatusAC = (status: Status) => ({ type: "TRACK-STATUS-CHANGED", status })
+store.XXX(() => {
+  console.log("state changed")
+})
 
-const state: PlayerState = {
-  status: "Stopped",
-  currentPlayPosition: 1213,
-  trackUrl: "https://blabla.com/track01.mp3",
-  volume: 100,
-}
-const newState = playerReducer(state, changeVolumeAC(20))
-console.log(newState.volume === 20)
+store.dispatch({ type: "ANY" })
 
-// Напишите вместо XXX правильную строку кода, чтобы изменить громкость трека и увидеть в консоли true.
+// Что нужно написать вместо XXX, чтобы в консоли увидеть 'state changed'?
