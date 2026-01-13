@@ -1,55 +1,36 @@
-import axios from "axios"
-import { createRoot } from "react-dom/client"
-import { useEffect, useState } from "react"
+type Status = "Stopped" | "Playing" | "Paused"
 
-// Types
-type Post = {
-  id: string
-  body: string
-  title: string
-  userId: string
+type PlayerState = {
+  volume: number // in percents
+  trackUrl: string // 'https://blabla.com/track01.mp3',
+  currentPlayPosition: number // milliseconds,
+  status: Status
 }
 
-// Api
-export const instance = axios.create({ baseURL: "https://exams-frontend.kimitsu.it-incubator.io/api/" })
-
-const postsAPI = {
-  getPosts() {
-    return instance.get<Post[]>("posts")
-  },
+const playerReducer = (state: PlayerState, action: any) => {
+  switch (action.type) {
+    case "TRACK-VOLUME-CHANGED":
+      return {
+        ...state,
+        XXX,
+      }
+    default:
+      return state
+  }
 }
 
-// App
-export const App = () => {
-  const [posts, setPosts] = useState<Post[]>([])
+export const muteTrackAC = () => ({ type: "TRACK-MUTED" })
+export const changeVolumeAC = (volumeLevel: number) => ({ type: "TRACK-VOLUME-CHANGED", volumeLevel })
+export const changeTrackAC = (url: string) => ({ type: "TRACK-URL-CHANGED", url })
+export const changeTrackPlayStatusAC = (status: Status) => ({ type: "TRACK-STATUS-CHANGED", status })
 
-  useEffect(() => {
-    postsAPI.getPosts().then((res: any) => {
-      setPosts(res.data)
-    })
-  }, [])
-
-  return (
-    <>
-      <h1>📜 Список постов</h1>
-      {posts.length ? (
-        posts.map((p) => {
-          return (
-            <div key={p.id}>
-              <b>title</b>: {p.title}
-            </div>
-          )
-        })
-      ) : (
-        <h2>Постов нету 😥</h2>
-      )}
-    </>
-  )
+const state: PlayerState = {
+  status: "Stopped",
+  currentPlayPosition: 1213,
+  trackUrl: "https://blabla.com/track01.mp3",
+  volume: 100,
 }
+const newState = playerReducer(state, changeVolumeAC(20))
+console.log(newState.volume === 20)
 
-createRoot(document.getElementById("root")!).render(<App />)
-
-// 📜 Описание:
-// Напишите запрос на сервер для получения всех постов
-// Типизацию возвращаемых данных в ответе указывать необязательно, но можно и указать (в ответах учтены оба варианта).
-// Исправленную версию строки напишите в качестве ответа.
+// Напишите вместо XXX правильную строку кода, чтобы изменить громкость трека и увидеть в консоли true.
